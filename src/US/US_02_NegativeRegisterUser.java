@@ -2,9 +2,11 @@ package US;
 
 import Utility.BaseDriver;
 import Utility.MyFunc;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class US_02_NegativeRegisterUser extends BaseDriver {
     @Test
@@ -26,6 +28,24 @@ public class US_02_NegativeRegisterUser extends BaseDriver {
 
         WebElement inputEmail= driver.findElement(By.id("Email"));
         inputEmail.sendKeys("javanator@gmail.com");
+
+        WebElement inputPassword= driver.findElement(By.id("Password"));
+        inputPassword.sendKeys("Pass1234");
+
+        WebElement inputConfirmPassword= driver.findElement(By.id("ConfirmPassword"));
+        inputConfirmPassword.sendKeys("Pass1234");
+
+        WebElement btnRegister= driver.findElement(By.id("register-button"));
+        btnRegister.click();
+
+
+        WebElement msg= driver.findElement(By.xpath("//li[text()='The specified email already exists']"));
+        wait.until(ExpectedConditions.visibilityOf(msg));
+        Assert.assertTrue("Mesaj bulunamadı",msg.getText().contains("The specified email already exists"));
+
+
+        BekleKapat();
+
 
 
 
