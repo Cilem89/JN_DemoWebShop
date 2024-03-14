@@ -52,7 +52,7 @@ public class US_08_NegativeKuponVeHediyeKartıKullanımı extends BaseDriver {
 
             WebElement couponErrorMessage = driver.findElement(By.xpath("//div[@class='message']"));
             wait.until(ExpectedConditions.visibilityOf(couponErrorMessage));
-            Assert.assertFalse("Kupon uygulanamadı", couponErrorMessage.getText().contains("The coupon code you entered couldn't be applied to your order."));
+            Assert.assertTrue("Kupon uygulanamadı", couponErrorMessage.getText().contains("The coupon code you entered couldn't be applied to your order."));
 
 
             WebElement addGiftCardButton = driver.findElement(By.name("applygiftcardcouponcode"));
